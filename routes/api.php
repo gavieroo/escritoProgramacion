@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('v1')->group(function () {
+    Route::post("tarea",[TareaController::class, "CrearTarea"]);
+    Route::get("tarea",[TareaController::class, "ListarTodasLasTarea"]);
+    Route::get("tarea/{id}",[TareaController::class, "ListarUnaTareas"]);
+    Route::put("tarea/{id}",[TareaController::class, "ActualizarTarea"]);
+    Route::delete("tarea/{id}",[TareaController::class, "EliminarTarea"]);
+});
