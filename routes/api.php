@@ -24,4 +24,5 @@ Route::prefix('v1')->group(function () {
     Route::get("tarea/{id}",[TareaController::class, "ListarUnaTareas"]);
     Route::put("tarea/{id}",[TareaController::class, "ActualizarTarea"]);
     Route::delete("tarea/{id}",[TareaController::class, "EliminarTarea"]);
+    Route::post("tarea/{id}", [TareaController::class, "buscarTareas"]);
 });

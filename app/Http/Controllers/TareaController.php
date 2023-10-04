@@ -54,4 +54,28 @@ class TareaaController extends Controller
     public function EliminarTarea(Request $request, $id){
         Tarea::FindOrFail($id) -> delete();
     }
+
+    public function buscarTareas(Request $request){
+        $nombre = $request->input('nombre');
+        $estado = $request->input('estado');
+        $autor = $request->input('autor');
+
+        $tareas = Tarea::query();
+
+        if ($nombre){
+            $tareas->where('nombre', "$nombre");
+        }
+    
+        if ($estado){
+        $tareas->where('estado', $estado);
+        }
+
+        if ($autor) {
+        $tareas->where('autor', 'like', "%$autor%");
+        }   
+
+        $resultados = $tareas->get();
+
+        return view('tareas.blade.php', compact('resultados'));
+}
 }
